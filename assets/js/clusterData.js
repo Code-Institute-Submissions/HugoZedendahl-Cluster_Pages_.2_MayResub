@@ -93,6 +93,7 @@ function storeUrlCluster()
         /*adds old cluster and the new url into runtimeCluster*/
         localStorage.setItem("cluster"+number+"Data", JSON.stringify(runtimeCluster));
         /*stores runtimeCluster to local storage*/
+        alert("URL added")
         return;
     }
 
@@ -136,6 +137,7 @@ function nameClusterButton()
     {
         newName = document.getElementById("cluster_"+number+"_name").value;
         localStorage.setItem("cluster"+number+"Name", JSON.stringify(newName));
+        alert("cluster"+number+"name changed")
     }
 /* loads the manually set names on the index page buttons */    
 function loadClusterNames()
