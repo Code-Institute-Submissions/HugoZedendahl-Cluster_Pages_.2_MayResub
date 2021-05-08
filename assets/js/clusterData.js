@@ -65,13 +65,14 @@ function storeUrlCluster()
         runtimeCluster = [];
         /*Reset runtime cluster to clear old data*/
         
-        let newUrlRegexTest = new RegExp(^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$);
-
-        if(newUrlRegexTest.test(document.getElementById("cluster_"+number+"_link").value) == false )
+        let newUrlRegexTest = new RegExp(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/);
+        /* the regex and if statment is to check that the entered information is a url, this expression was found at https://www.regextester.com/93652# */
+        if(newUrlRegexTest.test(document.getElementById("cluster_"+number+"_link").value) == false)
             {
                 alert("not recognized as a URL");
                 return;
             }
+        
         oldCluster = JSON.parse(localStorage.getItem("cluster"+number+"Data"));
         /* gets cluster data */
         if(oldCluster==null)
@@ -130,13 +131,13 @@ function launchCluster()
             }
         /*launches websites*/
     }
-
+/* sets a name on the buttons on the index page */ 
 function nameClusterButton()
     {
         newName = document.getElementById("cluster_"+number+"_name").value;
         localStorage.setItem("cluster"+number+"Name", JSON.stringify(newName));
     }
-    
+/* loads the manually set names on the index page buttons */    
 function loadClusterNames()
     {
         for(let id of clusterNumbers) 
@@ -147,5 +148,4 @@ function loadClusterNames()
                     }
             }
     }
-    /* this adds the names of the cluster onto the buttons/*
 /*json method found here https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage */
